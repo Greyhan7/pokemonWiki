@@ -36,8 +36,6 @@ pokeAPI를 활용하여 포켓몬 도감을 검색할 수 있는 사이트
 ### 5. 잡설
 - 사실 springboot를 쓸 필요 없었는데 그냥 spring으로 기본설정 공부하는 겸 썼다.
 - 영어 이름으로만 나와서 한글로도 출력하고 싶다. 근데 https://pokeapi.co/api/v2/pokemon-species/1 주소로 한글 이름이랑 설명이 있긴한데 이걸 동시에 하는 방법을 모르겠다.
-  https://datamoney.tistory.com/153
-- 
 
 <hr>
 ## api
