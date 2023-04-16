@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>!!포켓몬 도감!!</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/list.css"/>
+</head>
+<body>
+<div id="search_box">
+    <input id="pokemonName" type="text" placeholder="포켓몬 이름">
+    <button id="btn_search">🔍</button>
+</div>
+
+<div id="pokemonBox" class="pokemonBox">
+</div>
+
+</body>
+<script>
+    $(function(){
+        let search_pokemon = "";
+        $(document).on('click', '#btn_search', function(){
+            search_pokemon = document.getElementById('pokemonName').value;
+            getPokemon();
+        })
+
+        let getPokemon = function(){
+            fetch("https://pokeapi.co/api/v2/pokemon/"+search_pokemon)
+                .then((response => response.json()))
+                .then((data) => {
+                    console.log(data);
+                    document.querySelector(".pokemonBox").innerHTML = `
+                    <div>
+                        <img src="${data.sprites.front_default}">
+                        <a>${data.name}</a>
+                    </div>
+                    `;
+                })
+                .catch((err) => {
+                    console.log("해당 포켓몬이 없습니다", err);
+                });
+        };
+
+        let getPokemonList = function(){
+            for(let i =1; i<=20; i++){
+                fetch("https://pokeapi.co/api/v2/pokemon/"+i)
+                    .then((response => response.json()))
+                    .then((data) => {
+                        let box_small = $("<div></div>").attr({
+                            id:data.id,
+                            class:"box_small"
+                        }).css({
+                            'float' : 'left',
+                            'border' : '1px'
+                        });
+
+                        let url = '/pokemonDetail?id='+data.id;
+                        let a_link = $("<a></a>").attr('href', url);
+                        let img = $("<img>").attr({
+                            src: data.sprites.front_default
+                        }).css('position', 'relative');
+                        let box_name = $("<p></p>").text(data.name).css('text-align', 'center');
+
+                        // let box_type1 = $("<p></p>").text(data.types[0].type.name).css('text-align', 'center');
+                        // let box_type2 = "";
+                        //
+                        // if(data.types[1] !== undefined){
+                        //     box_type2 = $("<p></p>").text(data.types[1].type.name).css('text-align', 'center');
+                        // }
+
+                        a_link.append(img);
+                        box_small.append(a_link);
+                        box_small.append(box_name);
+                        // box_small.append(box_type1);
+                        // box_small.append(box_type2);
+                        $(".pokemonBox").append(box_small);
+
+                        $(document).on('click', '.box_small', function(){
+                            sessionStorage.setItem('id', this.id);
+                        });
+
+                    })
+                    .catch((err) => {
+                        console.log("해당 포켓몬이 없습니다", err);
+                    });
+            }
+        };
+
+        getPokemonList();
+
+    }); // 전체 function
+</script>
+</html>
