@@ -1,6 +1,12 @@
 # pokemonWiki
 pokeAPI를 활용하여 포켓몬 도감을 검색할 수 있는 사이트
 
+### 0. 화면
+
+- ver 0.1
+<img src="https://user-images.githubusercontent.com/99037697/232314311-9b2f09f9-3846-4a62-b731-13b5c0a9e1a4.png" width="800" height="500">
+
+
 ### 1. 사용기술
 - Java
 - JavaScript
