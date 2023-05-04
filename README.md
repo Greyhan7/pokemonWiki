@@ -8,6 +8,11 @@ pokeAPI를 활용하여 포켓몬 도감을 검색할 수 있는 사이트
 
 <img src="https://user-images.githubusercontent.com/99037697/232321292-89fa7bba-0abd-49ad-86a3-2d30671ee75d.png" width="700" height="500">
 
+- ver 0.1.1
+
+![image](https://user-images.githubusercontent.com/99037697/235226981-1873b1c2-9194-4cac-9f1d-53aaf695964b.png)
+
+
 
 ### 1. 사용기술
 - Java
@@ -22,11 +27,16 @@ pokeAPI를 활용하여 포켓몬 도감을 검색할 수 있는 사이트
     - 사진 클릭하면 해당 포켓몬의 상세 정보
     - 영어 이름 or 전국 도감번호 검색하면 해당 포켓몬이 나옴
 
+- ver 0.1.1
+    - 포켓몬을 한글 이름으로 검색하면 해당 포켓몬이 나오도록 설정.
+
 <hr>
 
 ### 3. 배운거 & 오류해결
 - javascript로 fetch()를 활용하여 api 호출 (json 형태)
 - javascript에서 문자열 null, undefined 확인하는 방법
+- javascript에서 json 로컬 파일 불러오기 (.js로 만들어서 불러온 다음 json.parse 한다)
+- javascript에서 배열 값을 쉽게 찾는 라이브러리 lodash
 
 
 ### 4. 넣고 싶은 기능
