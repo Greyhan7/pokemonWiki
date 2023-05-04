@@ -4,13 +4,17 @@ pokeAPI를 활용하여 포켓몬 도감을 검색할 수 있는 사이트
 ### 0. 화면
 
 - ver 0.1
-<img src="https://user-images.githubusercontent.com/99037697/232314311-9b2f09f9-3846-4a62-b731-13b5c0a9e1a4.png" width="700" height="500">
+<img src="https://user-images.githubusercontent.com/99037697/232314311-9b2f09f9-3846-4a62-b731-13b5c0a9e1a4.png" width="500" height="300">
 
-<img src="https://user-images.githubusercontent.com/99037697/232321292-89fa7bba-0abd-49ad-86a3-2d30671ee75d.png" width="700" height="500">
+<img src="https://user-images.githubusercontent.com/99037697/232321292-89fa7bba-0abd-49ad-86a3-2d30671ee75d.png" width="500" height="300">
 
 - ver 0.1.1
 
 ![image](https://user-images.githubusercontent.com/99037697/235226981-1873b1c2-9194-4cac-9f1d-53aaf695964b.png)
+
+- ver 0.1.2
+
+<img src="https://user-images.githubusercontent.com/99037697/236265871-f9f425ee-29e1-4ee4-b2d1-089eb05ec455.png" width="500" height="300">
 
 
 
@@ -29,6 +33,10 @@ pokeAPI를 활용하여 포켓몬 도감을 검색할 수 있는 사이트
 
 - ver 0.1.1
     - 포켓몬을 한글 이름으로 검색하면 해당 포켓몬이 나오도록 설정.
+    
+- ver 0.1.2
+    - 검색하면 한글 이름으로 나오도록.
+    - 버튼 눌면 세대별로 포켓몬 출력되도록.
 
 <hr>
 
