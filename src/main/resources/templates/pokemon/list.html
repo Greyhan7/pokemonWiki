@@ -6,21 +6,29 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/css/list.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
+    <script type="text/javascript" src="/js/searchPokemon.js"></script>
+    <script type="text/javascript" src="/js/getPokemonList.js" ></script>
 </head>
 <body>
 <div id="search_box">
     <input id="pokemonName" type="text" placeholder="포켓몬 이름">
     <button id="btn_search">🔍</button>
+    <button class="btn_gen" data-gen="1">1세대 포켓몬 출력</button>
+    <button class="btn_gen" data-gen="2">2세대 포켓몬 출력</button>
+    <button class="btn_gen" data-gen="3">3세대 포켓몬 출력</button>
+    <button class="btn_gen" data-gen="4">4세대 포켓몬 출력</button>
+    <button class="btn_gen" data-gen="5">5세대 포켓몬 출력</button>
+    <button class="btn_gen" data-gen="6">6세대 포켓몬 출력</button>
+    <button class="btn_gen" data-gen="7">7세대 포켓몬 출력</button>
+    <button class="btn_gen" data-gen="8">8세대 포켓몬 출력</button>
+    <button class="btn_gen" data-gen="9">9세대 포켓몬 출력</button>
 </div>
-
 <div id="pokemonBox" class="pokemonBox">
 </div>
-
 </body>
 <script src="/pokemon_species_names.js" type="text/javascript"></script>
 <script>
     const translator = JSON.parse(JSON.stringify(data));
-
     $(function(){
         // 포켓몬 한글 이름을 포켓몬 id로 반환
         let translate_KorToId = function (name_kor){
@@ -32,72 +40,36 @@
             return id.pokemon_species_id;
         };
 
-        // 검색 클릭
+        getPokemonList(1,151);
+
+        // 버튼 누르면 세대별로 포켓몬 출력
+        $(document).on('click', '.btn_gen', function(){
+            const ranges = [
+                [1, 151],
+                [152, 251],
+                [252, 386],
+                [387, 493],
+                [494, 649],
+                [650, 721],
+                [722, 809],
+                [810, 905],
+                [906, 1010]
+            ];
+            const gen = $(this).data('gen');
+            const range = ranges[gen - 1];
+            if (range) {
+                getPokemonList(range[0], range[1]);
+            } else {
+                console.error('Invalid generation');
+            }
+        });
+
+        // 검색 이벤트
         let search_pokemon = "";
         $(document).on('click', '#btn_search', function(){
             search_pokemon = translate_KorToId(document.getElementById('pokemonName').value);
             searchPokemon(search_pokemon);
         })
-
-
-        // 검색 기능
-        let searchPokemon = function(){
-            fetch("https://pokeapi.co/api/v2/pokemon/"+search_pokemon)
-                .then((response => response.json()))
-                .then((data) => {
-                    console.log(data);
-                    document.querySelector(".pokemonBox").innerHTML = `
-                    <div>
-                        <img src="${data.sprites.front_default}">
-                        <a>${data.name}</a>
-                    </div>
-                    `;
-                })
-                .catch((err) => {
-                    console.log("해당 포켓몬이 없습니다", err);
-                });
-        };
-
-        let getPokemonList = function(){
-            for(let i =1; i<=1000; i++){
-                fetch("https://pokeapi.co/api/v2/pokemon/"+i)
-                    .then((response => response.json()))
-                    .then((data) => {
-                        let box_small = $("<div></div>").attr({
-                            id:data.id,
-                            class:"box_small"
-                        }).css({
-                            'float' : 'left',
-                            'border' : '1px'
-                        });
-
-                        let url = '/pokemonDetail?id='+data.id;
-                        let a_link = $("<a></a>").attr('href', url);
-                        let img = $("<img>").attr({
-                            src: data.sprites.front_default
-                        }).css('position', 'relative');
-
-                        a_link.append(img);
-                        box_small.append(a_link);
-                        $(".pokemonBox").append(box_small);
-
-                        $(document).on('click', '.box_small', function(){
-                            sessionStorage.setItem('id', this.id);
-                        });
-                        fetch("https://pokeapi.co/api/v2/pokemon-species/"+i)
-                            .then((response) => response.json())
-                            .then((data) => {
-                                let box_name = $("<p></p>").text(data.names[2].name).css('text-align', 'center');
-                                box_small.append(box_name);
-                            })
-                    })
-                    .catch((err) => {
-                        console.log("해당 포켓몬이 없습니다", err);
-                    });
-                setTimeout(async ()=>console.log("지연"), 200);
-            }
-        };
-        getPokemonList();
 
     }); // 전체 function
 </script>
