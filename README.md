@@ -75,6 +75,9 @@ pokeAPI를 활용하여 포켓몬 도감을 검색할 수 있는 사이트
 - 포켓몬 썰, 괴담 게시판
 
 
+![image](https://github.com/Greyhan7/pokemonWiki/assets/99037697/c4787060-ead6-47f4-82c1-0cd09509d5af)
+
+
 
 ### 5. 잡설
 - 사실 springboot를 쓸 필요 없었는데 그냥 spring으로 기본 설정 공부하는 겸 썼다.
